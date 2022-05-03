@@ -1,0 +1,36 @@
+.profile {
+    padding: 10px;
+
+    .top {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+
+        .left > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(70, 54, 214);
+            font-size: 20px;
+        }
+    }
+
+    span {
+        font-size: 14px;
+    }
+
+    .search {
+        width: 100%;
+        height: 40px;
+        padding: 5px;
+        border: 0.2px solid whitesmoke;
+        border-bottom-width: 2px;
+        background-color: transparent;
+        color: whitesmoke;
+        outline: none;
+    }
+}
