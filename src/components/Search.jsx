@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import {VscSearch} from 'react-icons/vsc'
 
 function Search() {
-    const [focus, setFocus] = useState(false)
 
     return (
-        <Container className={focus ? 'focus' : ''}>
-            <input type="search" placeholder="Search" onFocus={() => setFocus(!focus)}/>
-            <button>Y</button>
+        <Container>
+            <input type="search" placeholder="Search" />
+            <button>
+                <VscSearch className="icon"/>
+            </button>
         </Container>
     )
 }
@@ -22,26 +24,41 @@ let Container = styled.div`
     border-radius: 5px;
     height: 40px;
 
-    &.focus {
-        border-bottom: 4px solid blue;
-    }
-
     input {
         flex: 1;
         padding: 10px;
+        margin: 5px;
         border: none;
         outline: none;
         background-color: transparent;
         color: whitesmoke;
+        font-weight: 400;
+        transform: scale(1);
+        transition: 250ms ease-in 0s;
+
+        &:focus {
+            transform: scale(1.05)
+        }
     }
 
     button {
-        margin: 5px;
-        background-color: transparent;
-        width: 30px;
-        border-radius: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 30px;
+        margin: 5px;
+        background-color: transparent;
+        border-radius: 5px;
+        border: none;
+        transition: all 0.5s ease-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #282828;
+        }
+
+        .icon {
+            font-size: 12px;
+        }
     }
 `

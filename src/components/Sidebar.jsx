@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Lists from './Lists'
 import Search from './Search'
 import UserProfile from './UserProfile'
 
@@ -8,6 +9,7 @@ function Sidebar() {
     <Container>
         <UserProfile />
         <Search />
+        <Lists />
     </Container>
   )
 }
