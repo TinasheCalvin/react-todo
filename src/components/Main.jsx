@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { format } from 'date-fns'
+import { TipsAndUpdatesOutlined, MoreHorizOutlined } from '@mui/icons-material'
+import HeroContent from './HeroContent'
 
 function Main({background}) {
+  let today = new Date()
+
   return (
     <Container>
       <Background>
@@ -9,10 +14,21 @@ function Main({background}) {
       </Background>
       <Content>
         <TopContent>
-          <span>Top</span>
+          <DateContainer>
+            <h1>My Day</h1>
+            <p>{format(today, "eeee")}, {format(today, "ee")} {format(today, "LLLL")}</p>
+          </DateContainer>
+          <MenuItems>
+            <TipsAndUpdatesOutlined className='icon'/>
+            <MoreHorizOutlined className='icon' />
+          </MenuItems>
         </TopContent>
-        <CenterContent>Center</CenterContent>
-        <BottomContent>Bottom</BottomContent>
+        <CenterContent>
+          <HeroContent />
+        </CenterContent>
+        <BottomContent>
+          
+        </BottomContent>
       </Content>
     </Container>
   )
@@ -54,11 +70,53 @@ const Content = styled.div`
 `
 
 const TopContent = styled.div`
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+`
+
+const DateContainer = styled.div`
+  h1 {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 400;
+  }
+`
+
+const MenuItems = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .icon {
+    padding: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 250ms ease-in;
+
+    &:hover {
+      background-color: #585656;
+    }
+  }
+`
+
+const CenterContent = styled.div`
   
 `
 
-const CenterContent = styled.div``
-
 const BottomContent = styled.div`
-  margin-bottom: 50px;
+  width: 100%;
+  margin-bottom: 10vh;
+  height: 50px;
+  background-color: rgba(0,0,0,0.333);
+  border-radius: 5px;
 `
