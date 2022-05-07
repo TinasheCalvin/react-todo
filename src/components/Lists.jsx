@@ -1,43 +1,45 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import {LightModeOutlined,StarOutlineOutlined,PersonOutline,HomeOutlined,ListAltOutlined} from '@mui/icons-material'
 
 function Lists() {
-  return (
-    <Container>
-        <Link to='/'>
-            <ListItem className='active'>
-                <MyDayIcon fontSize='small'/>
-                <span>My Day</span>
-            </ListItem>
-        </Link>
-        <Link to='/important'>
-            <ListItem>
-                <ImportantTasksIcon fontSize='small'/>
-                <span>Important</span>
-            </ListItem>
-        </Link>
-        <Link to='/planned'>
-            <ListItem>
-                <PlannedTasksIcon fontSize='small'/>
-                <span>Planned</span>
-            </ListItem>
-        </Link>
-        <Link to='/assigned'>
-            <ListItem>
-                <AssignedTaskIcon fontSize='small'/>
-                <span>Assigned to me</span>
-            </ListItem>
-        </Link>
-        <Link to='/tasks'>
-            <ListItem>
-                <MyTasksIcon fontSize='small'/>
-                <span>Tasks</span>
-            </ListItem>
-        </Link>
-    </Container>
-  )
+    const location = useLocation()
+
+    return (
+        <Container>
+            <Link to='/'>
+                <ListItem className={location.pathname === '/' ? 'active' : ''}>
+                    <MyDayIcon fontSize='small'/>
+                    <span>My Day</span>
+                </ListItem>
+            </Link>
+            <Link to='/important'>
+                <ListItem className={location.pathname === '/important' ? 'active' : ''}>
+                    <ImportantTasksIcon fontSize='small'/>
+                    <span>Important</span>
+                </ListItem>
+            </Link>
+            <Link to='/planned'>
+                <ListItem className={location.pathname === '/planned' ? 'active' : ''}>
+                    <PlannedTasksIcon fontSize='small'/>
+                    <span>Planned</span>
+                </ListItem>
+            </Link>
+            <Link to='/assigned'>
+                <ListItem className={location.pathname === '/assigned' ? 'active' : ''}>
+                    <AssignedTaskIcon fontSize='small'/>
+                    <span>Assigned to me</span>
+                </ListItem>
+            </Link>
+            <Link to='/tasks'>
+                <ListItem className={location.pathname === '/tasks' ? 'active' : ''}>
+                    <MyTasksIcon fontSize='small'/>
+                    <span>Tasks</span>
+                </ListItem>
+            </Link>
+        </Container>
+    )
 }
 
 export default Lists
