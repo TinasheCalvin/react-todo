@@ -1,13 +1,25 @@
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import styled from 'styled-components'
 import Main from './components/Main';
 import Sidebar from './components/Sidebar';
 
 function App() {
   return (
-    <Container>
-      <Sidebar />
-      <Main />
-    </Container>
+    <Router>
+      <Container>
+        <Sidebar />
+        <Routes>
+          <Route path="/">
+            <Route index element={<Main background="/images/TV Tower.jpg" />} />
+            <Route path="important" element={<Main background="/images/Safari.jpg" />} />
+            <Route path="planned" element={<Main background="/images/Sea.jpg" />} />
+            <Route path="assigned" element={<Main background="/images/Desert.jpg" />} />
+            <Route path="tasks" element={<Main background="/images/Lighthouse.jpg" />} />
+          </Route>
+        </Routes>
+      </Container>
+    </Router>
+    
   );
 }
 

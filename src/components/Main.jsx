@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Main() {
+function Main({background}) {
   return (
     <Container>
-        <Background src="/images/Beach.jpg"/>
+        <Background src={background}/>
     </Container>
   )
 }
