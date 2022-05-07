@@ -11,8 +11,8 @@ function App() {
         <Routes>
           <Route path="/">
             <Route index element={<Main background="/images/TV Tower.jpg" />} />
-            <Route path="important" element={<Main background="/images/Safari.jpg" />} />
-            <Route path="planned" element={<Main background="/images/Sea.jpg" />} />
+            <Route path="important" element={<Main background="/images/Beach.jpg" />} />
+            <Route path="planned" element={<Main background="/images/Sunset.jpg" />} />
             <Route path="assigned" element={<Main background="/images/Desert.jpg" />} />
             <Route path="tasks" element={<Main background="/images/Lighthouse.jpg" />} />
           </Route>
