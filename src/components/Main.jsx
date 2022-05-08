@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { TipsAndUpdatesOutlined, MoreHorizOutlined } from '@mui/icons-material'
+import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from './HeroContent'
 
 function Main({background}) {
   let today = new Date()
+  const [input, setInput] = useState('')
+  const [addTodo, setAddTodo] = useState(false)
 
   return (
     <Container>
@@ -26,7 +28,37 @@ function Main({background}) {
         <CenterContent>
           <HeroContent />
         </CenterContent>
-        <BottomContent>
+        <BottomContent onClick={() => setAddTodo(true)}>
+          {addTodo ? (
+            <>
+              <InputWrapper>
+                <CircleOutlined />
+                <input type="text" placeholder="Try typing 'Pay utilities bill by Friday 6pm'" value={input} onChange={e => setInput(e.target.value)} />
+              </InputWrapper>
+              {input.length > 0 && (
+                <MenuIconsWrapper>
+                  <MenuIcon>
+                    <HomeOutlined />
+                    <span>Tasks</span>
+                  </MenuIcon>
+                  <MenuIcon>
+                    <CalendarMonthOutlined fontSize='small'/>
+                  </MenuIcon>
+                  <MenuIcon>
+                    <AlarmOnOutlined fontSize='small'/>
+                  </MenuIcon>
+                  <MenuIcon>
+                    <EventRepeatOutlined fontSize='small'/>
+                  </MenuIcon>
+                </MenuIconsWrapper>
+              )}
+            </>
+          ) : (
+            <AddTodoWrapper>
+              <AddOutlined />
+              <span>Add a todo</span>
+            </AddTodoWrapper>
+          )}
           
         </BottomContent>
       </Content>
@@ -119,4 +151,70 @@ const BottomContent = styled.div`
   height: 50px;
   background-color: rgba(0,0,0,0.333);
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.49);
+    cursor: pointer;
+  }
+`
+
+const InputWrapper = styled.div`
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 5px;
+
+  input {
+    height: 30px;
+    width: 50vw;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: whitesmoke;
+    letter-spacing: 0.6px;
+
+    &::placeholder {
+      color: rgb(207, 195, 195);
+      font-weight: 200;
+      font-size: 14px;
+    }
+  }
+`
+
+const MenuIconsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 10px;
+`
+
+const MenuIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    height: 100%;
+    background-color: #615d5d;
+    border-radius: 3px;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 400;
+  }
+`
+
+const AddTodoWrapper = styled(InputWrapper)`
+  width: 100%;
+  span {
+    font-size: 15px;
+    font-weight: 300;
+  }
 `
