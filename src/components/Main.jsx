@@ -3,11 +3,21 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from './HeroContent'
+import Todo from './Todo'
 
 function Main({background}) {
   let today = new Date()
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
+
+  // defining the state for the todo list
+  const [todos, setTodos] = useState([])
+
+  function handleAddTodo() {
+    setTodos(prevTodos => (
+      [...prevTodos, input]
+    ))
+  }
 
   return (
     <Container>
@@ -18,7 +28,7 @@ function Main({background}) {
         <TopContent>
           <DateContainer>
             <h1>My Day</h1>
-            <p>{format(today, "eeee")}, {format(today, "ee")} {format(today, "LLLL")}</p>
+            <p>{format(today, "eeee")}, {format(today, "dd")} {format(today, "LLLL")}</p>
           </DateContainer>
           <MenuItems>
             <TipsAndUpdatesOutlined className='icon'/>
@@ -26,13 +36,16 @@ function Main({background}) {
           </MenuItems>
         </TopContent>
         <CenterContent>
-          <HeroContent />
+          {todos.length === 0 && <HeroContent />}
+          {todos.map((todo,index) => (
+            <Todo key={index} todo={todo} />
+          ))}
         </CenterContent>
         <BottomContent onClick={() => setAddTodo(true)}>
           {addTodo ? (
             <>
               <InputWrapper>
-                <CircleOutlined />
+                <CircleOutlined onClick={handleAddTodo}/>
                 <input type="text" placeholder="Try typing 'Pay utilities bill by Friday 6pm'" value={input} onChange={e => setInput(e.target.value)} />
               </InputWrapper>
               {input.length > 0 && (
@@ -142,7 +155,6 @@ const MenuItems = styled.div`
 `
 
 const CenterContent = styled.div`
-  
 `
 
 const BottomContent = styled.div`
