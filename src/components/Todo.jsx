@@ -9,7 +9,7 @@ function Todo({todo}) {
             <CircleOutlined fontSize='small'/>
             <span>{todo.description}</span>
         </TodoWrapper>
-        <StarBorderOutlined fontSize='small' />
+        <FavoriteIcon fontSize='small' />
     </Container>
   )
 }
@@ -17,20 +17,30 @@ function Todo({todo}) {
 export default Todo
 
 const Container = styled.div`
-    width: 100%;
-    margin: 10px 0px;
-    height: 50px;
-    background-color: rgba(0,0,0,0.49);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  margin: 5px 0px;
+  height: 50px;
+  background-color: #252424;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 150ms ease-in;
+
+  &:hover {
+    background-color: #363434;
+  }
 `
 
 const TodoWrapper = styled.div`
-    margin: 3px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 5px;
+  margin: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 5px;
+`
+
+const FavoriteIcon = styled(StarBorderOutlined)`
+  margin-right: 5px;
 `
