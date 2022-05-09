@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from './HeroContent'
 import Todo from './Todo'
+import { TasksContext } from '../context/TasksContext'
 
 function Main({background}) {
   let today = new Date()
@@ -11,18 +12,25 @@ function Main({background}) {
   const [addTodo, setAddTodo] = useState(false)
 
   // defining the state for the todo list
-  const [todos, setTodos] = useState([])
+  const { tasks, addTodoTask, completeTodoTask } = useContext(TasksContext)
 
   function handleAddTodo() {
-    setTodos(prevTodos => (
-      [...prevTodos, input]
-    ))
+    let todo = {
+      id: Math.floor(Math.random()*100),
+      description: input,
+      isComplete: false,
+      isFavorite: false
+    }
+    addTodoTask(todo)
+    // resetting the input
+    setInput('')
+    setAddTodo(false)
   }
 
   return (
     <Container>
       <Background>
-        <img src={background} />
+        <img src={background} alt="" />
       </Background>
       <Content>
         <TopContent>
@@ -35,9 +43,9 @@ function Main({background}) {
             <MoreHorizOutlined className='icon' />
           </MenuItems>
         </TopContent>
-        <CenterContent>
-          {todos.length === 0 && <HeroContent />}
-          {todos.map((todo,index) => (
+        <CenterContent taskCount={tasks.length}>
+          {tasks.length === 0 && <HeroContent />}
+          {tasks.map((todo,index) => (
             <Todo key={index} todo={todo} />
           ))}
         </CenterContent>
@@ -155,6 +163,18 @@ const MenuItems = styled.div`
 `
 
 const CenterContent = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  ${({taskCount}) => {
+    if (taskCount > 0) {
+      return `
+        flex: 1;
+        margin-top: 30px;
+      `
+    }
+  }}
 `
 
 const BottomContent = styled.div`

@@ -7,7 +7,7 @@ function Todo({todo}) {
     <Container>
         <TodoWrapper>
             <CircleOutlined fontSize='small'/>
-            <span>{todo}</span>
+            <span>{todo.description}</span>
         </TodoWrapper>
         <StarBorderOutlined fontSize='small' />
     </Container>
@@ -20,7 +20,7 @@ const Container = styled.div`
     width: 100%;
     margin: 10px 0px;
     height: 50px;
-    background-color: rgba(0,0,0,0.333);
+    background-color: rgba(0,0,0,0.49);
     border-radius: 5px;
     display: flex;
     align-items: center;
