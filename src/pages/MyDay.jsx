@@ -44,7 +44,13 @@ function MyDay({background}) {
           </MenuItems>
         </TopContent>
         <CenterContent taskCount={tasks.length}>
-          {tasks.length === 0 && <HeroContent />}
+          {tasks.length === 0 && 
+            <HeroContent 
+              title="Focus on your day"
+              description="Get things done with My Day, a list that refreshes every day."
+              headerImage="/images/illustrations/add-tasks.svg"
+            />
+          }
           {tasks.map((todo,index) => (
             <Todo key={index} todo={todo} />
           ))}

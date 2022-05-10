@@ -18,7 +18,7 @@ function Important({background}) {
         id: Math.floor(Math.random()*100),
         description: input,
         isComplete: false,
-        isFavorite: false
+        isFavorite: true
       }
       addTodoTask(todo)
       // resetting the input
@@ -42,7 +42,12 @@ function Important({background}) {
             </MenuItems>
           </TopContent>
           <CenterContent taskCount={favoriteTasks.length}>
-            {favoriteTasks.length === 0 && <HeroContent />}
+            {favoriteTasks.length === 0 &&
+              <HeroContent 
+                description="Try starring some tasks to see them here."
+                headerImage="/images/illustrations/add-notes.svg"
+              />
+            }
             {favoriteTasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}

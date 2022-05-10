@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function HeroContent() {
+function HeroContent({title, description, headerImage}) {
   return (
     <Container>
-        <h4>Focus on your day</h4>
-        <p>Get things done with My Day, a list that refreshes every day.</p>
+        <ImageWrapper>
+          <img src={headerImage} alt='' />
+        </ImageWrapper>
+        <h4>{title}</h4>
+        <p>{description}</p>
     </Container>
   )
 }
@@ -35,5 +38,17 @@ const Container = styled.div`
         font-weight: 300;
         text-align: center;
         margin: 5px 0px;
+    }
+`
+
+const ImageWrapper = styled.div`
+    width: 100px;
+    height: 100px;
+    margin: auto;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 `

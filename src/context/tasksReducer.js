@@ -15,6 +15,9 @@ const tasksReducer = (state, action) => {
         case "ADD_TO_FAVORITES":
             return { ...state, tasks: payload }
         
+        case "REMOVE_FROM_FAVORITES":
+            return { ...state, tasks: payload }
+        
         default:
             return state
     }

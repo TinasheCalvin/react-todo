@@ -41,7 +41,12 @@ function Assigned({background}) {
             </MenuItems>
           </TopContent>
           <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && <HeroContent />}
+            {tasks.length === 0 && 
+              <HeroContent 
+                description="Tasks assigned to you show up here."
+                headerImage="/images/illustrations/design1.svg"
+              />
+            }
             {tasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}

@@ -41,7 +41,12 @@ function Planned({background}) {
             </MenuItems>
           </TopContent>
           <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && <HeroContent />}
+            {tasks.length === 0 && 
+              <HeroContent 
+                description="Tasks with due dates and reminders show up here."
+                headerImage="/images/illustrations/add-todo.svg"
+              />
+            }
             {tasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}

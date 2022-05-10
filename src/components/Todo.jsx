@@ -4,7 +4,7 @@ import { CircleOutlined, StarBorderOutlined, Star } from '@mui/icons-material'
 import { TasksContext } from '../context/TasksContext'
 
 function Todo({todo}) {
-  const { addTaskToFavorites } = useContext(TasksContext)
+  const { addTaskToFavorites, removeFromFavorites } = useContext(TasksContext)
   
   return (
     <Container>
@@ -13,7 +13,7 @@ function Todo({todo}) {
             <span>{todo.description}</span>
         </TodoWrapper>
         {todo.isFavorite ?
-          <Star fontSize='small' /> :
+          <Star fontSize='small' onClick={() => removeFromFavorites(todo.id)} /> :
           <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo.id)} />
         }
         

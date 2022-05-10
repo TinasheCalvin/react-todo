@@ -41,7 +41,12 @@ function MyTasks({background}) {
             </MenuItems>
           </TopContent>
           <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && <HeroContent />}
+            {tasks.length === 0 && 
+              <HeroContent 
+                description="Tasks show up here if they aren't part of any lists you've created."
+                headerImage="/images/illustrations/checklist.svg"
+              />
+            }
             {tasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}
