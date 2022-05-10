@@ -1,7 +1,7 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import styled from 'styled-components'
-import Main from './components/Main'
 import Sidebar from './components/Sidebar'
+import MyDay from './pages/MyDay'
 import Important from './pages/Important'
 import Planned from './pages/Planned'
 import Assigned from './pages/Assigned'
@@ -14,7 +14,7 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/">
-            <Route index element={<Main background="/images/TV Tower.jpg" />} />
+            <Route index element={<MyDay background="/images/TV Tower.jpg" />} />
             <Route path="important" element={<Important background="/images/Beach.jpg" />} />
             <Route path="planned" element={<Planned background="/images/Sunset.jpg" />} />
             <Route path="assigned" element={<Assigned background="/images/Desert.jpg" />} />

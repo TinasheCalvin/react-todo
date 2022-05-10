@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
-import HeroContent from './HeroContent'
-import Todo from './Todo'
+import HeroContent from '../components/HeroContent'
+import Todo from '../components/Todo'
 import { TasksContext } from '../context/TasksContext'
 
-function Main({background}) {
+function MyDay({background}) {
   let today = new Date()
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
@@ -87,7 +87,7 @@ function Main({background}) {
   )
 }
 
-export default Main
+export default MyDay
 
 const Container = styled.div`
   flex: 4;
