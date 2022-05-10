@@ -24,8 +24,17 @@ export const TasksContextProvider = ({children}) => {
         })
     }
 
+    const addTaskToFavorites = (id) => {
+        let tasks = state.tasks.map((task) => (
+            task.id === id ? { ...task, isFavorite: true } : task
+        ))
+        dispatch({
+            type: "ADD_TO_FAVORITES",
+            payload: tasks
+        })
+    }
     // saving all the functions and state in one variable to use in the context provider
-    let value = { tasks: state.tasks, addTodoTask, completeTodoTask }
+    let value = { tasks: state.tasks, addTodoTask, completeTodoTask, addTaskToFavorites }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }

@@ -12,7 +12,7 @@ function MyDay({background}) {
   const [addTodo, setAddTodo] = useState(false)
 
   // defining the state for the todo list
-  const { tasks, addTodoTask, completeTodoTask } = useContext(TasksContext)
+  const { tasks, addTodoTask } = useContext(TasksContext)
 
   function handleAddTodo() {
     let todo = {

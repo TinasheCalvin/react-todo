@@ -11,6 +11,7 @@ function Important({background}) {
   
     // defining the state for the todo list
     const { tasks, addTodoTask } = useContext(TasksContext)
+    const favoriteTasks = tasks.filter(task => task.isFavorite)
   
     function handleAddTodo() {
       let todo = {
@@ -40,9 +41,9 @@ function Important({background}) {
               <MoreHorizOutlined className='icon' />
             </MenuItems>
           </TopContent>
-          <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && <HeroContent />}
-            {tasks.map((todo,index) => (
+          <CenterContent taskCount={favoriteTasks.length}>
+            {favoriteTasks.length === 0 && <HeroContent />}
+            {favoriteTasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}
           </CenterContent>
