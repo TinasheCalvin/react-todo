@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import Main from './components/Main'
 import Sidebar from './components/Sidebar'
 import Important from './pages/Important'
+import Planned from './pages/Planned'
+import Assigned from './pages/Assigned'
+import MyTasks from './pages/MyTasks'
 
 function App() {
   return (
@@ -13,9 +16,9 @@ function App() {
           <Route path="/">
             <Route index element={<Main background="/images/TV Tower.jpg" />} />
             <Route path="important" element={<Important background="/images/Beach.jpg" />} />
-            <Route path="planned" element={<Main background="/images/Sunset.jpg" />} />
-            <Route path="assigned" element={<Main background="/images/Desert.jpg" />} />
-            <Route path="tasks" element={<Main background="/images/Lighthouse.jpg" />} />
+            <Route path="planned" element={<Planned background="/images/Sunset.jpg" />} />
+            <Route path="assigned" element={<Assigned background="/images/Desert.jpg" />} />
+            <Route path="tasks" element={<MyTasks background="/images/Lighthouse.jpg" />} />
           </Route>
         </Routes>
       </Container>
