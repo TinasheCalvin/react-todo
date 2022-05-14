@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { format, formatISO } from 'date-fns'
+import { nanoid } from 'nanoid'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
@@ -18,7 +19,7 @@ function MyDay({background}) {
 
   function handleAddTodo() {
     let todo = {
-      id: Math.floor(Math.random()*100),
+      id: nanoid(),
       description: input,
       isComplete: false,
       isFavorite: false,
