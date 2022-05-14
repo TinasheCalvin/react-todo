@@ -47,8 +47,9 @@ const TodoWrapper = styled.div`
   align-items: center;
   gap: 10px;
   padding-left: 5px;
-`
 
-// const FavoriteIcon = styled(StarBorderOutlined)`
-//   margin-right: 5px;
-// `
+  span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+`

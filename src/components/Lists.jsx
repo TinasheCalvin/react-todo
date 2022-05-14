@@ -1,41 +1,69 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import {LightModeOutlined,StarOutlineOutlined,PersonOutline,HomeOutlined,ListAltOutlined} from '@mui/icons-material'
+import { TasksContext } from '../context/TasksContext'
 
 function Lists() {
-    const location = useLocation()
+    let location = useLocation()
+    let { tasks } = useContext(TasksContext)
+
+    let favoriteTasks = tasks.filter(task => task.isFavorite === true)
+    let incompleteTasks = tasks.filter(task => task.isComplete === false)
 
     return (
         <Container>
             <Link to='/'>
                 <ListItem className={location.pathname === '/' ? 'active' : ''}>
-                    <MyDayIcon fontSize='small'/>
-                    <span>My Day</span>
+                    <ListItemContent>
+                        <MyDayIcon fontSize='small'/>
+                        <span>My Day</span>
+                    </ListItemContent>
+                    <TasksCount>
+                        <span>{tasks.length}</span>
+                    </TasksCount>
                 </ListItem>
             </Link>
             <Link to='/important'>
                 <ListItem className={location.pathname === '/important' ? 'active' : ''}>
-                    <ImportantTasksIcon fontSize='small'/>
-                    <span>Important</span>
+                    <ListItemContent>
+                        <ImportantTasksIcon fontSize='small'/>
+                        <span>Important</span>
+                    </ListItemContent>
+                    {favoriteTasks.length > 0 && (
+                        <TasksCount>
+                            <span>{favoriteTasks.length}</span>
+                        </TasksCount>
+                    )}
                 </ListItem>
             </Link>
             <Link to='/planned'>
                 <ListItem className={location.pathname === '/planned' ? 'active' : ''}>
-                    <PlannedTasksIcon fontSize='small'/>
-                    <span>Planned</span>
+                    <ListItemContent>
+                        <PlannedTasksIcon fontSize='small'/>
+                        <span>Planned</span>
+                    </ListItemContent>
                 </ListItem>
             </Link>
             <Link to='/assigned'>
                 <ListItem className={location.pathname === '/assigned' ? 'active' : ''}>
-                    <AssignedTaskIcon fontSize='small'/>
-                    <span>Assigned to me</span>
+                    <ListItemContent>
+                        <AssignedTaskIcon fontSize='small'/>
+                        <span>Assigned to me</span>
+                    </ListItemContent>
                 </ListItem>
             </Link>
             <Link to='/tasks'>
                 <ListItem className={location.pathname === '/tasks' ? 'active' : ''}>
-                    <MyTasksIcon fontSize='small'/>
-                    <span>Tasks</span>
+                    <ListItemContent>
+                        <MyTasksIcon fontSize='small'/>
+                        <span>Tasks</span>
+                    </ListItemContent>
+                    {incompleteTasks.length > 0 && (
+                        <TasksCount>
+                            <span>{incompleteTasks.length}</span>
+                        </TasksCount>
+                    )}
                 </ListItem>
             </Link>
         </Container>
@@ -53,7 +81,7 @@ const Container = styled.div`
 `
 
 const ListItem = styled(Container)`
-    border: 1px solid transparent;
+    border: none;
     border-radius: 3px;
     margin: 5px 0px;
     padding: 5px;
@@ -62,9 +90,23 @@ const ListItem = styled(Container)`
     align-items: center;
     gap: 20px;
     transition: all 100ms cubic-bezier(0.1,0.7,0.3,0.1) 0s;
+    position: relative;
 
     &.active {
         background-color: #3f3b3b;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: 0;
+            right: 0;
+            margin: 0;
+            height: 50%;
+            width: 2px;
+            background-color: rgb(115,193,241);
+            border-radius: 2px;
+        }
     }
 
     &:hover {
@@ -73,6 +115,29 @@ const ListItem = styled(Container)`
 
     span {
         font-size: 14px;
+    }
+`
+
+const ListItemContent = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px
+`
+
+const TasksCount = styled.div`
+    background-color: #282828;
+    padding: 3px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        font-size: 10px;
+        font-weight: 400;
     }
 `
 
