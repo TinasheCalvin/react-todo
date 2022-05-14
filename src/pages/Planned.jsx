@@ -37,7 +37,7 @@ function Planned({background}) {
         <Content>
           <TopContent>
             <HeadingContainer>
-                <ListAltOutlined fontSize='medium' />
+                <ListAltOutlined style={{fontSize: 26}} />
                 <h1>Planned</h1>
             </HeadingContainer>
             <MenuItems>

@@ -38,7 +38,7 @@ function Important({background}) {
         <Content>
           <TopContent>
             <HeadingContainer>
-                <StarOutlineOutlined fontSize='medium' />
+                <StarOutlineOutlined style={{fontSize: 26}} />
                 <h1>Important</h1>
             </HeadingContainer>
             <MenuItems>

@@ -38,7 +38,7 @@ function MyTasks({background}) {
         <Content>
           <TopContent>
             <HeadingContainer>
-                <HomeOutlined fontSize='medium' />
+                <HomeOutlined style={{fontSize: 26}} />
                 <h1>Tasks</h1>
             </HeadingContainer>
             <MenuItems>
