@@ -1,5 +1,8 @@
+const storage = window.localStorage
+let tasks = JSON.parse(storage.getItem('tasks'))
+
 export const initialState = {
-    tasks: []
+    tasks: tasks ? tasks : []
 }
 
 const tasksReducer = (state, action) => {

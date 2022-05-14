@@ -11,11 +11,10 @@ function MyDay({background}) {
   let today = new Date()
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
-
   let creationDate = formatISO(today, { representation: 'date'})
 
-  // defining the state for the todo list
   const { tasks, addTodoTask } = useContext(TasksContext)
+  let todos = tasks.filter(task => task.creationDate === creationDate)
 
   function handleAddTodo() {
     let todo = {
@@ -55,7 +54,7 @@ function MyDay({background}) {
               headerImage="/images/illustrations/add-tasks.svg"
             />
           }
-          {tasks.map((todo,index) => (
+          {todos.map((todo,index) => (
             <Todo key={index} todo={todo} />
           ))}
         </CenterContent>

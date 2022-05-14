@@ -18,7 +18,7 @@ function Important({background}) {
   
     function handleAddTodo() {
       let todo = {
-        id: nanoidid(),
+        id: nanoid(),
         description: input,
         isComplete: false,
         isFavorite: true,

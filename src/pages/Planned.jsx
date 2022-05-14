@@ -4,7 +4,6 @@ import { formatISO } from 'date-fns'
 import { nanoid } from 'nanoid'
 import { ListAltOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
-import Todo from '../components/Todo'
 import { TasksContext } from '../context/TasksContext'
 
 function Planned({background}) {
@@ -14,7 +13,7 @@ function Planned({background}) {
     let creationDate = formatISO(new Date(), { representation: 'date' })
 
     // defining the state for the todo list
-    const { tasks, addTodoTask } = useContext(TasksContext)
+    const { addTodoTask } = useContext(TasksContext)
   
     function handleAddTodo() {
       let todo = {
@@ -45,16 +44,11 @@ function Planned({background}) {
               <MoreHorizOutlined className='icon' />
             </MenuItems>
           </TopContent>
-          <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && 
-              <HeroContent 
-                description="Tasks with due dates and reminders show up here."
-                headerImage="/images/illustrations/add-todo.svg"
-              />
-            }
-            {tasks.map((todo,index) => (
-              <Todo key={index} todo={todo} />
-            ))}
+          <CenterContent>
+            <HeroContent 
+              description="Tasks with due dates and reminders show up here."
+              headerImage="/images/illustrations/add-todo.svg"
+            />
           </CenterContent>
           <BottomContent onClick={() => setAddTodo(true)}>
             {addTodo ? (
@@ -172,15 +166,6 @@ const CenterContent = styled.div`
   display: flex;
   flex-direction:column;
   align-items: center;
-
-  ${({taskCount}) => {
-    if (taskCount > 0) {
-      return `
-        flex: 1;
-        margin-top: 30px;
-      `
-    }
-  }}
 `
 
 const BottomContent = styled.div`

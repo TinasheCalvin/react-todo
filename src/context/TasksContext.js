@@ -2,6 +2,11 @@ import { createContext, useReducer } from 'react'
 import tasksReducer, { initialState } from './tasksReducer'
 
 export const TasksContext = createContext(initialState)
+const storage = window.localStorage
+
+function saveToLocalStorage(tasks) {
+    storage.setItem("tasks", JSON.stringify(tasks))
+}
 
 export const TasksContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(tasksReducer, initialState)
@@ -12,6 +17,7 @@ export const TasksContextProvider = ({children}) => {
             type: "ADD_TASK",
             payload: tasks
         })
+        saveToLocalStorage(tasks)
     }
 
     const completeTodoTask = (id) => {
@@ -22,6 +28,7 @@ export const TasksContextProvider = ({children}) => {
             type: "COMPLETE_TASK",
             payload: tasks
         })
+        saveToLocalStorage(tasks)
     }
 
     const addTaskToFavorites = (id) => {
@@ -42,6 +49,7 @@ export const TasksContextProvider = ({children}) => {
             type: "REMOVE_FROM_FAVORITES",
             payload: tasks
         })
+        saveToLocalStorage(tasks)
     }
 
     // saving all the functions and state in one variable to use in the context provider
