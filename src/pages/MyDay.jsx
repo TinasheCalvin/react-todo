@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
-import { format } from 'date-fns'
+import { format, formatISO } from 'date-fns'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
@@ -11,6 +11,8 @@ function MyDay({background}) {
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
 
+  let creationDate = formatISO(today, { representation: 'date'})
+
   // defining the state for the todo list
   const { tasks, addTodoTask } = useContext(TasksContext)
 
@@ -19,7 +21,8 @@ function MyDay({background}) {
       id: Math.floor(Math.random()*100),
       description: input,
       isComplete: false,
-      isFavorite: false
+      isFavorite: false,
+      creationDate: creationDate
     }
     addTodoTask(todo)
     // resetting the input
