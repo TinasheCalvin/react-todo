@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 function Themes({visible}) {
   return (
@@ -50,6 +50,15 @@ function Themes({visible}) {
 
 export default Themes
 
+const fadeInTop = keyframes`
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+`
+
 const Container = styled.div`
     position: absolute;
     top: 15%;
@@ -62,6 +71,7 @@ const Container = styled.div`
     z-index: 0;
     border: none;
     display: none;
+    opacity: 0;
 
     span {
         font-size: 14px;
@@ -75,8 +85,10 @@ const Container = styled.div`
 
     ${({isVisible}) => {
         if (isVisible) {
-            return `
+            return css`
                 display: block;
+                opacity: 1;
+                animation: ${fadeInTop} 500ms;
             `
         }
     }}
