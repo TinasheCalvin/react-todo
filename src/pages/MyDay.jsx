@@ -52,8 +52,8 @@ function MyDay() {
             <MoreHorizOutlined className='icon' onClick={() => setThemesVisible(!themesVisible)} />
           </MenuItems>
         </TopContent>
-        <CenterContent taskCount={tasks.length}>
-          {tasks.length === 0 && 
+        <CenterContent taskCount={todos.length}>
+          {todos.length === 0 && 
             <HeroContent 
               title="Focus on your day"
               description="Get things done with My Day, a list that refreshes every day."

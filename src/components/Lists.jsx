@@ -2,12 +2,15 @@ import React, { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import {LightModeOutlined,StarOutlineOutlined,PersonOutline,HomeOutlined,ListAltOutlined} from '@mui/icons-material'
+import { formatISO } from 'date-fns'
 import { TasksContext } from '../context/TasksContext'
 
 function Lists() {
     let location = useLocation()
     let { tasks } = useContext(TasksContext)
+    let today = formatISO(new Date(), { representation: 'date'})
 
+    let todayTasks = tasks.filter(task => task.creationDate === today)
     let favoriteTasks = tasks.filter(task => task.isFavorite === true)
     let incompleteTasks = tasks.filter(task => task.isComplete === false)
 
@@ -19,9 +22,11 @@ function Lists() {
                         <MyDayIcon fontSize='small'/>
                         <span>My Day</span>
                     </ListItemContent>
-                    <TasksCount>
-                        <span>{tasks.length}</span>
-                    </TasksCount>
+                    {todayTasks.length > 0 && (
+                        <TasksCount>
+                            <span>{todayTasks.length}</span>
+                        </TasksCount>
+                    )}
                 </ListItem>
             </Link>
             <Link to='/important'>
