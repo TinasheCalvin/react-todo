@@ -4,6 +4,7 @@ import { formatISO } from 'date-fns'
 import { nanoid } from 'nanoid'
 import { ListAltOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
+import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 
 function Planned({background}) {
@@ -11,6 +12,9 @@ function Planned({background}) {
     const [addTodo, setAddTodo] = useState(false)
   
     let creationDate = formatISO(new Date(), { representation: 'date' })
+
+    // defining state to show the themes wrapper
+    const [themesVisible, setThemesVisible] = useState(false)
 
     // defining the state for the todo list
     const { addTodoTask } = useContext(TasksContext)
@@ -41,7 +45,7 @@ function Planned({background}) {
                 <h1>Planned</h1>
             </HeadingContainer>
             <MenuItems>
-              <MoreHorizOutlined className='icon' />
+              <MoreHorizOutlined className='icon' onClick={() => setThemesVisible(!themesVisible)} />
             </MenuItems>
           </TopContent>
           <CenterContent>
@@ -84,6 +88,7 @@ function Planned({background}) {
             
           </BottomContent>
         </Content>
+        <Themes visible={themesVisible} />
       </Container>
     )
 }

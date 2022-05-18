@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 import { MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
+import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 
 function MyTasks({background}) {
@@ -13,6 +14,9 @@ function MyTasks({background}) {
 
     let creationDate = formatISO(new Date(), { representation: 'date' })
   
+    // defining state to show the themes wrapper
+    const [themesVisible, setThemesVisible] = useState(false)
+
     // defining the state for the todo list
     const { tasks, addTodoTask } = useContext(TasksContext)
   
@@ -42,7 +46,7 @@ function MyTasks({background}) {
                 <h1>Tasks</h1>
             </HeadingContainer>
             <MenuItems>
-              <MoreHorizOutlined className='icon' />
+              <MoreHorizOutlined className='icon' onClick={() => setThemesVisible(!themesVisible)} />
             </MenuItems>
           </TopContent>
           <CenterContent taskCount={tasks.length}>
@@ -90,6 +94,7 @@ function MyTasks({background}) {
             
           </BottomContent>
         </Content>
+        <Themes visible={themesVisible} />
       </Container>
     )
 }
