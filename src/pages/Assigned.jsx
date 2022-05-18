@@ -7,14 +7,14 @@ import HeroContent from '../components/HeroContent'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 
-function Assigned({background}) {
+function Assigned() {
     const [input, setInput] = useState('')
     const [addTodo, setAddTodo] = useState(false)
 
     let creationDate = formatISO(new Date(), { representation: 'date' })
 
     // defining the state for the todo list
-    const { addTodoTask } = useContext(TasksContext)
+    const { themes, addTodoTask } = useContext(TasksContext)
   
     // defining state to show the themes wrapper
     const [themesVisible, setThemesVisible] = useState(false)
@@ -36,7 +36,7 @@ function Assigned({background}) {
     return (
       <Container>
         <Background>
-          <img src={background} alt="" />
+          <img src={themes.assigned} alt="" />
         </Background>
         <Content>
           <TopContent>
@@ -87,7 +87,7 @@ function Assigned({background}) {
             )}
           </BottomContent>
         </Content>
-        <Themes visible={themesVisible} />
+        <Themes visible={themesVisible} name='assigned' />
       </Container>
     )
 }

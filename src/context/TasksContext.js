@@ -52,8 +52,16 @@ export const TasksContextProvider = ({children}) => {
         saveToLocalStorage(tasks)
     }
 
+    const changeBackgroundTheme = (id,background) => {
+        let themes = {...state.themes, [id]: background}
+        dispatch({
+            type: "CHANGE_BACKGROUND",
+            payload: themes
+        })
+    }
+
     // saving all the functions and state in one variable to use in the context provider
-    let value = { tasks: state.tasks, addTodoTask, completeTodoTask, addTaskToFavorites, removeFromFavorites }
+    let value = { tasks: state.tasks, themes: state.themes, addTodoTask, completeTodoTask, addTaskToFavorites, removeFromFavorites, changeBackgroundTheme }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }

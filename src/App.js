@@ -14,11 +14,11 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/">
-            <Route index element={<MyDay background="/images/TV Tower.jpg" />} />
-            <Route path="important" element={<Important background="/images/Beach.jpg" />} />
-            <Route path="planned" element={<Planned background="/images/Sunset.jpg" />} />
-            <Route path="assigned" element={<Assigned background="/images/Desert.jpg" />} />
-            <Route path="tasks" element={<MyTasks background="/images/Lighthouse.jpg" />} />
+            <Route index element={<MyDay />} />
+            <Route path="important" element={<Important />} />
+            <Route path="planned" element={<Planned />} />
+            <Route path="assigned" element={<Assigned />} />
+            <Route path="tasks" element={<MyTasks />} />
           </Route>
         </Routes>
       </Container>

@@ -7,7 +7,7 @@ import HeroContent from '../components/HeroContent'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 
-function Planned({background}) {
+function Planned() {
     const [input, setInput] = useState('')
     const [addTodo, setAddTodo] = useState(false)
   
@@ -17,7 +17,7 @@ function Planned({background}) {
     const [themesVisible, setThemesVisible] = useState(false)
 
     // defining the state for the todo list
-    const { addTodoTask } = useContext(TasksContext)
+    const { themes, addTodoTask } = useContext(TasksContext)
   
     function handleAddTodo() {
       let todo = {
@@ -36,7 +36,7 @@ function Planned({background}) {
     return (
       <Container>
         <Background>
-          <img src={background} alt="" />
+          <img src={themes.planned} alt="" />
         </Background>
         <Content>
           <TopContent>
@@ -88,7 +88,7 @@ function Planned({background}) {
             
           </BottomContent>
         </Content>
-        <Themes visible={themesVisible} />
+        <Themes visible={themesVisible} name='planned' />
       </Container>
     )
 }

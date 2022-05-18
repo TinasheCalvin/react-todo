@@ -3,22 +3,23 @@ import styled from 'styled-components'
 import { format, formatISO } from 'date-fns'
 import { nanoid } from 'nanoid'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
-import { Fade } from 'react-reveal'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 
-function MyDay({background}) {
+function MyDay() {
   let today = new Date()
+  const { tasks, addTodoTask, themes } = useContext(TasksContext)
+  
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
+
   let creationDate = formatISO(today, { representation: 'date'})
 
   // defining state to show the themes wrapper
   const [themesVisible, setThemesVisible] = useState(false)
 
-  const { tasks, addTodoTask } = useContext(TasksContext)
   let todos = tasks.filter(task => task.creationDate === creationDate)
 
   function handleAddTodo() {
@@ -38,7 +39,7 @@ function MyDay({background}) {
   return (
     <Container>
       <Background>
-        <img src={background} alt="" />
+        <img src={themes.myDay} alt="" />
       </Background>
       <Content>
         <TopContent>
@@ -97,7 +98,7 @@ function MyDay({background}) {
           
         </BottomContent>
       </Content>
-      <Themes visible={themesVisible} />
+      <Themes visible={themesVisible} name='myDay' />
     </Container>
   )
 }

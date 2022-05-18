@@ -18,7 +18,7 @@ function Important({background}) {
     const [themesVisible, setThemesVisible] = useState(false)
 
     // defining the state for the todo list
-    const { tasks, addTodoTask } = useContext(TasksContext)
+    const { themes, tasks, addTodoTask } = useContext(TasksContext)
     const favoriteTasks = tasks.filter(task => task.isFavorite)
   
     function handleAddTodo() {
@@ -38,7 +38,7 @@ function Important({background}) {
     return (
       <Container>
         <Background>
-          <img src={background} alt="" />
+          <img src={themes.important} alt="" />
         </Background>
         <Content>
           <TopContent>
@@ -94,7 +94,7 @@ function Important({background}) {
             )}
           </BottomContent>
         </Content>
-        <Themes visible={themesVisible} />
+        <Themes visible={themesVisible} name='important' />
       </Container>
     )
 }

@@ -1,51 +1,58 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled, { keyframes, css } from 'styled-components'
+import { TasksContext } from '../context/TasksContext'
 
-function Themes({visible}) {
-  return (
-    <Container isVisible={visible}>
-        <span>Themes</span>
-        <span className="desc">Choose desired theme from the ones given below</span>
-        <ThemesWrapper>
-            <Theme>
-                <img src='/images/BirdNest.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Fern.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Safari.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Beach.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Desert.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Field.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Gradient.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Lighthouse.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Sea.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Sunrise.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/Sunset.jpg' alt='' />
-            </Theme>
-            <Theme>
-                <img src='/images/TV Tower.jpg' alt='' />
-            </Theme>
-        </ThemesWrapper>
-    </Container>
-  )
+function Themes({visible, name}) {
+    let {changeBackgroundTheme} = useContext(TasksContext)
+    
+    function handleThemeSelect(theme) {
+        changeBackgroundTheme(name, theme)
+    }
+
+    return (
+        <Container isVisible={visible}>
+            <span>Themes</span>
+            <span className="desc">Choose desired theme from the ones given below</span>
+            <ThemesWrapper>
+                <Theme onClick={() => handleThemeSelect('/images/BirdNest.jpg')}>
+                    <img src='/images/BirdNest.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Fern.jpg')}>
+                    <img src='/images/Fern.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Safari.jpg')}>
+                    <img src='/images/Safari.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Beach.jpg')}>
+                    <img src='/images/Beach.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Desert.jpg')}>
+                    <img src='/images/Desert.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Field.jpg')}>
+                    <img src='/images/Field.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Gradient.jpg')}>
+                    <img src='/images/Gradient.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Lighthouse.jpg')}>
+                    <img src='/images/Lighthouse.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Sea.jpg')}>
+                    <img src='/images/Sea.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Sunrise.jpg')}>
+                    <img src='/images/Sunrise.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/Sunset.jpg')}>
+                    <img src='/images/Sunset.jpg' alt='' />
+                </Theme>
+                <Theme onClick={() => handleThemeSelect('/images/TV Tower.jpg')}>
+                    <img src='/images/TV Tower.jpg' alt='' />
+                </Theme>
+            </ThemesWrapper>
+        </Container>
+    )
 }
 
 export default Themes

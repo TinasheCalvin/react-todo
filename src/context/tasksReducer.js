@@ -1,8 +1,17 @@
 const storage = window.localStorage
 let tasks = JSON.parse(storage.getItem('tasks'))
 
+let themes = {
+    'myDay': '/images/TV Tower.jpg',
+    'important': '/images/Beach.jpg',
+    'planned': '/images/Sunset.jpg',
+    'assigned': '/images/Desert.jpg',
+    'myTasks': '/images/Lighthouse.jpg'
+}
+
 export const initialState = {
-    tasks: tasks ? tasks : []
+    tasks: tasks ? tasks : [],
+    themes: themes
 }
 
 const tasksReducer = (state, action) => {
@@ -21,6 +30,9 @@ const tasksReducer = (state, action) => {
         case "REMOVE_FROM_FAVORITES":
             return { ...state, tasks: payload }
         
+        case "CHANGE_BACKGROUND":
+            return { ...state, themes: payload }
+
         default:
             return state
     }
