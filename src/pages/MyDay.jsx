@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { format, formatISO } from 'date-fns'
 import { nanoid } from 'nanoid'
-import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
+import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
@@ -41,6 +41,7 @@ function MyDay() {
       <Background>
         <img src={themes.myDay} alt="" />
       </Background>
+      <SidebarMenu fontSize='small'/>
       <Content>
         <TopContent>
           <DateContainer>
@@ -144,6 +145,11 @@ const TopContent = styled.div`
   justify-content: space-between;
   height: 50px;
   width: 100%;
+`
+
+const SidebarMenu = styled(Menu)`
+  position: fixed;
+  margin: 10px 40px;
 `
 
 const DateContainer = styled.div`

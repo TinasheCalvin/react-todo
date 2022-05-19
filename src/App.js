@@ -34,4 +34,5 @@ const Container = styled.div`
   height: 100vh;
   background-color: #181818;
   display: flex;
+  position: relative;
 `
