@@ -7,10 +7,12 @@ import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
+import useWindowSize from '../hooks/useWindowSize'
 
 function MyDay() {
   let today = new Date()
-  const { tasks, addTodoTask, themes } = useContext(TasksContext)
+  let { tasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
+  let { width } = useWindowSize()
   
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
@@ -37,11 +39,11 @@ function MyDay() {
   }
 
   return (
-    <Container>
+    <Container width={width}>
       <Background>
         <img src={themes.myDay} alt="" />
       </Background>
-      <SidebarMenu fontSize='small'/>
+      {(width <= 768 && !sidebarOpen) && <SidebarMenu fontSize='small' onClick={openSidebar}/>}
       <Content>
         <TopContent>
           <DateContainer>
@@ -107,9 +109,21 @@ function MyDay() {
 export default MyDay
 
 const Container = styled.div`
-  flex: 4;
+  height: 100vh;
+  width: calc(100% - 300px);
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 300px;
+
+  ${({width}) => {
+    if (width <= 768) {
+      return `
+        left: 0;
+        width: 100%;
+      `
+    }
+  }}
 `
 
 const Background = styled.div`
@@ -149,6 +163,7 @@ const TopContent = styled.div`
 
 const SidebarMenu = styled(Menu)`
   position: fixed;
+  cursor: pointer;
   margin: 10px 40px;
 `
 

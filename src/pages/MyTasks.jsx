@@ -2,15 +2,17 @@ import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { formatISO } from 'date-fns'
 import { nanoid } from 'nanoid'
-import { MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined } from '@mui/icons-material'
+import { MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
+import useWindowSize from '../hooks/useWindowSize'
 
 function MyTasks() {
     const [input, setInput] = useState('')
     const [addTodo, setAddTodo] = useState(false)
+    let { width } = useWindowSize()
 
     let creationDate = formatISO(new Date(), { representation: 'date' })
   
@@ -18,7 +20,7 @@ function MyTasks() {
     const [themesVisible, setThemesVisible] = useState(false)
 
     // defining the state for the todo list
-    const { themes, tasks, addTodoTask } = useContext(TasksContext)
+    const { themes, tasks, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
   
     function handleAddTodo() {
       let todo = {
@@ -35,10 +37,11 @@ function MyTasks() {
     }
   
     return (
-      <Container>
+      <Container width={width}>
         <Background>
           <img src={themes.myTasks} alt="" />
         </Background>
+        {(width <= 768 && !sidebarOpen) && <SidebarMenu fontSize='small' onClick={openSidebar}/>}
         <Content>
           <TopContent>
             <HeadingContainer>
@@ -102,9 +105,21 @@ function MyTasks() {
 export default MyTasks
 
 const Container = styled.div`
-  flex: 4;
+  height: 100vh;
+  width: calc(100% - 300px);
   overflow: hidden;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 300px;
+
+  ${({width}) => {
+    if (width <= 768) {
+      return `
+        left: 0;
+        width: 100%;
+      `
+    }
+  }}
 `
 
 const Background = styled.div`
@@ -121,6 +136,12 @@ const Background = styled.div`
     height: 100vh;
     object-fit: cover;
   }
+`
+
+const SidebarMenu = styled(Menu)`
+  position: fixed;
+  cursor: pointer;
+  margin: 10px 40px;
 `
 
 const Content = styled.div`
