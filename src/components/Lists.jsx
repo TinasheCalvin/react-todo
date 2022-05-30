@@ -7,7 +7,7 @@ import { TasksContext } from '../context/TasksContext'
 
 function Lists() {
     let location = useLocation()
-    let { tasks } = useContext(TasksContext)
+    let { tasks, closeSidebar } = useContext(TasksContext)
     let today = formatISO(new Date(), { representation: 'date'})
 
     let todayTasks = tasks.filter(task => task.creationDate === today)
@@ -17,7 +17,7 @@ function Lists() {
     return (
         <Container>
             <Link to='/'>
-                <ListItem className={location.pathname === '/' ? 'active' : ''}>
+                <ListItem className={location.pathname === '/' ? 'active' : ''} onClick={closeSidebar}>
                     <ListItemContent>
                         <MyDayIcon fontSize='small'/>
                         <span>My Day</span>
@@ -30,7 +30,7 @@ function Lists() {
                 </ListItem>
             </Link>
             <Link to='/important'>
-                <ListItem className={location.pathname === '/important' ? 'active' : ''}>
+                <ListItem className={location.pathname === '/important' ? 'active' : ''} onClick={closeSidebar}>
                     <ListItemContent>
                         <ImportantTasksIcon fontSize='small'/>
                         <span>Important</span>
@@ -43,7 +43,7 @@ function Lists() {
                 </ListItem>
             </Link>
             <Link to='/planned'>
-                <ListItem className={location.pathname === '/planned' ? 'active' : ''}>
+                <ListItem className={location.pathname === '/planned' ? 'active' : ''} onClick={closeSidebar}>
                     <ListItemContent>
                         <PlannedTasksIcon fontSize='small'/>
                         <span>Planned</span>
@@ -51,7 +51,7 @@ function Lists() {
                 </ListItem>
             </Link>
             <Link to='/assigned'>
-                <ListItem className={location.pathname === '/assigned' ? 'active' : ''}>
+                <ListItem className={location.pathname === '/assigned' ? 'active' : ''} onClick={closeSidebar}>
                     <ListItemContent>
                         <AssignedTaskIcon fontSize='small'/>
                         <span>Assigned to me</span>
@@ -59,7 +59,7 @@ function Lists() {
                 </ListItem>
             </Link>
             <Link to='/tasks'>
-                <ListItem className={location.pathname === '/tasks' ? 'active' : ''}>
+                <ListItem className={location.pathname === '/tasks' ? 'active' : ''} onClick={closeSidebar}>
                     <ListItemContent>
                         <MyTasksIcon fontSize='small'/>
                         <span>Tasks</span>
