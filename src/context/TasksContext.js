@@ -60,8 +60,16 @@ export const TasksContextProvider = ({children}) => {
         })
     }
 
+    const toggleSidebar = () => {
+        let sidebarOpen = !state.sidebarOpen
+        dispatch({
+            type: "TOGGLE_SIDEBAR",
+            payload: sidebarOpen
+        })
+    }
+
     // saving all the functions and state in one variable to use in the context provider
-    let value = { tasks: state.tasks, themes: state.themes, addTodoTask, completeTodoTask, addTaskToFavorites, removeFromFavorites, changeBackgroundTheme }
+    let value = { tasks: state.tasks, themes: state.themes, sidebarOpen: state.sidebarOpen, addTodoTask, completeTodoTask, addTaskToFavorites, removeFromFavorites, changeBackgroundTheme, toggleSidebar }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }
