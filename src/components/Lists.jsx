@@ -94,7 +94,7 @@ const ListItem = styled(Container)`
     display: flex;
     align-items: center;
     gap: 20px;
-    transition: all 100ms cubic-bezier(0.1,0.7,0.3,0.1) 0s;
+    transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
     position: relative;
 
     &.active {
