@@ -1,0 +1,15 @@
+.colored-toast.swal2-icon-success {
+    background-color: #363434;
+}
+
+.colored-toast .swal2-title {
+    color: whitesmoke;
+}
+  
+.colored-toast .swal2-close {
+    color: whitesmoke;
+}
+
+.colored-toast .swal2-html-container {
+    color: whitesmoke;
+}

@@ -1,5 +1,6 @@
 import { createContext, useReducer } from 'react'
 import tasksReducer, { initialState } from './tasksReducer'
+import { todoCreationSuccess, addToFavorites, todoRemoveFromFavorites } from '../components/notifications'
 
 export const TasksContext = createContext(initialState)
 const storage = window.localStorage
@@ -18,6 +19,7 @@ export const TasksContextProvider = ({children}) => {
             payload: tasks
         })
         saveToLocalStorage(tasks)
+        todoCreationSuccess()
     }
 
     const completeTodoTask = (id) => {
@@ -39,6 +41,7 @@ export const TasksContextProvider = ({children}) => {
             type: "ADD_TO_FAVORITES",
             payload: tasks
         })
+        addToFavorites()
     }
     
     const removeFromFavorites = (id) => {
@@ -50,6 +53,7 @@ export const TasksContextProvider = ({children}) => {
             payload: tasks
         })
         saveToLocalStorage(tasks)
+        todoRemoveFromFavorites()
     }
 
     const changeBackgroundTheme = (id,background) => {
