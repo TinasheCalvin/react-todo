@@ -1,22 +1,24 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { CircleOutlined, StarBorderOutlined, Star } from '@mui/icons-material'
+import { CircleOutlined, CheckCircle, StarBorderOutlined, Star } from '@mui/icons-material'
 import { TasksContext } from '../context/TasksContext'
 
 function Todo({todo}) {
-  const { addTaskToFavorites, removeFromFavorites } = useContext(TasksContext)
-  
+  const { addTaskToFavorites, removeFromFavorites, completeTodoTask } = useContext(TasksContext)
+
   return (
     <Container>
-        <TodoWrapper>
-            <CircleOutlined fontSize='small'/>
-            <span>{todo.description}</span>
-        </TodoWrapper>
-        {todo.isFavorite ?
-          <Star fontSize='small' onClick={() => removeFromFavorites(todo.id)} /> :
-          <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo.id)} />
-        }
-        
+      <TodoWrapper>
+          {todo.isComplete ?
+            <CheckCircle fontSize='small'/> :
+            <CircleOutlined fontSize='small' onClick={() => completeTodoTask(todo.id)} />
+          }
+          <span>{todo.description}</span>
+      </TodoWrapper>
+      {todo.isFavorite ?
+        <Star fontSize='small' onClick={() => removeFromFavorites(todo.id)} /> :
+        <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo.id)} />
+      }
     </Container>
   )
 }

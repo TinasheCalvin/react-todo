@@ -21,6 +21,7 @@ function MyTasks() {
 
     // defining the state for the todo list
     const { themes, tasks, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
+    const todos = tasks.filter(todo => todo.isComplete === false)
   
     function handleAddTodo() {
       let todo = {
@@ -52,14 +53,14 @@ function MyTasks() {
               <MoreHorizOutlined className='icon' onClick={() => setThemesVisible(!themesVisible)} />
             </MenuItems>
           </TopContent>
-          <CenterContent taskCount={tasks.length}>
-            {tasks.length === 0 && 
+          <CenterContent taskCount={todos.length}>
+            {todos.length === 0 && 
               <HeroContent 
                 description="Tasks show up here if they aren't part of any lists you've created."
                 headerImage="/images/illustrations/checklist.svg"
               />
             }
-            {tasks.map((todo,index) => (
+            {todos.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}
           </CenterContent>

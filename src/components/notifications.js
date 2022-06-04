@@ -23,6 +23,13 @@ export const todoCreationSuccess = () => {
     })
 }
 
+export const todoCompletionSuccess = () => {
+    Toast.fire({
+        icon: 'success',
+        title: 'Todo completed'
+    })
+}
+
 export const addToFavorites = () => {
     Toast.fire({
         icon: 'success',

@@ -22,7 +22,7 @@ function MyDay() {
   // defining state to show the themes wrapper
   const [themesVisible, setThemesVisible] = useState(false)
 
-  let todos = tasks.filter(task => task.creationDate === creationDate)
+  let todos = tasks.filter(task => task.creationDate === creationDate && task.isComplete === false)
 
   function handleAddTodo() {
     let todo = {

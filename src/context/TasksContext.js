@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react'
 import tasksReducer, { initialState } from './tasksReducer'
-import { todoCreationSuccess, addToFavorites, todoRemoveFromFavorites } from '../components/notifications'
+import { todoCreationSuccess,addToFavorites,todoRemoveFromFavorites,todoCompletionSuccess } from '../components/notifications'
 
 export const TasksContext = createContext(initialState)
 const storage = window.localStorage
@@ -31,6 +31,7 @@ export const TasksContextProvider = ({children}) => {
             payload: tasks
         })
         saveToLocalStorage(tasks)
+        todoCompletionSuccess()
     }
 
     const addTaskToFavorites = (id) => {
