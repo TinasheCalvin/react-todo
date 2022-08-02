@@ -8,11 +8,15 @@ import Todo from '../components/Todo'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 import useWindowSize from '../hooks/useWindowSize'
+import useAxios from '../hooks/useAxios'
 
 function MyDay() {
   let today = new Date()
   let { tasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
   let { width } = useWindowSize()
+  let {data} = useAxios({ method: 'get', url: '/' })
+
+  console.log(data)
   
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
