@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { formatISO } from 'date-fns'
-import { nanoid } from 'nanoid'
 import { StarOutlineOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
@@ -21,15 +20,13 @@ function Important() {
 
     // defining the state for the todo list
     const { themes, tasks, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
-    const favoriteTasks = tasks.filter(task => task.isFavorite)
+    const importantTasks = tasks.filter(task => task.isImportant)
   
     function handleAddTodo() {
       let todo = {
-        id: nanoid(),
         description: input,
         isComplete: false,
-        isFavorite: true,
-        creationDate: creationDate
+        isImportant: true
       }
       addTodoTask(todo)
       // resetting the input
@@ -53,14 +50,14 @@ function Important() {
               <MoreHorizOutlined className='icon' onClick={() => setThemesVisible(!themesVisible)} />
             </MenuItems>
           </TopContent>
-          <CenterContent taskCount={favoriteTasks.length}>
-            {favoriteTasks.length === 0 &&
+          <CenterContent taskCount={importantTasks.length}>
+            {importantTasks.length === 0 &&
               <HeroContent 
                 description="Try starring some tasks to see them here."
                 headerImage="/images/illustrations/add-notes.svg"
               />
             }
-            {favoriteTasks.map((todo,index) => (
+            {importantTasks.map((todo,index) => (
               <Todo key={index} todo={todo} />
             ))}
           </CenterContent>

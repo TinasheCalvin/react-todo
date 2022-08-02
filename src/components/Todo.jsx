@@ -11,13 +11,13 @@ function Todo({todo}) {
       <TodoWrapper>
           {todo.isComplete ?
             <CheckCircle fontSize='small'/> :
-            <CircleOutlined fontSize='small' onClick={() => completeTodoTask(todo.id)} />
+            <CircleOutlined fontSize='small' onClick={() => completeTodoTask(todo)} />
           }
           <span>{todo.description}</span>
       </TodoWrapper>
-      {todo.isFavorite ?
-        <Star fontSize='small' onClick={() => removeFromFavorites(todo.id)} /> :
-        <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo.id)} />
+      {todo.isImportant ?
+        <Star fontSize='small' onClick={() => removeFromFavorites(todo)} /> :
+        <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo)} />
       }
     </Container>
   )

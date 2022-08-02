@@ -1,22 +1,23 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import { format, formatISO } from 'date-fns'
-import { nanoid } from 'nanoid'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
 import { TasksContext } from '../context/TasksContext'
 import useWindowSize from '../hooks/useWindowSize'
-import useAxios from '../hooks/useAxios'
 
 function MyDay() {
   let today = new Date()
-  let { tasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
+  let { tasks, getAllTasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
   let { width } = useWindowSize()
-  let {data} = useAxios({ method: 'get', url: '/' })
 
-  console.log(data)
+  console.log(tasks)
+
+  useEffect(() => {
+    getAllTasks()
+  }, [])
   
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
@@ -30,11 +31,9 @@ function MyDay() {
 
   function handleAddTodo() {
     let todo = {
-      id: nanoid(),
       description: input,
       isComplete: false,
-      isFavorite: false,
-      creationDate: creationDate
+      isImportant: false
     }
     addTodoTask(todo)
     // resetting the input

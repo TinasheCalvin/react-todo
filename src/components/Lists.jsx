@@ -11,7 +11,7 @@ function Lists() {
     let today = formatISO(new Date(), { representation: 'date'})
 
     let todayTasks = tasks.filter(task => task.creationDate === today && task.isComplete === false)
-    let favoriteTasks = tasks.filter(task => task.isFavorite === true && task.isComplete === false)
+    let importantTasks = tasks.filter(task => task.isImportant === true && task.isComplete === false)
     let incompleteTasks = tasks.filter(task => task.isComplete === false)
 
     return (
@@ -35,9 +35,9 @@ function Lists() {
                         <ImportantTasksIcon fontSize='small'/>
                         <span>Important</span>
                     </ListItemContent>
-                    {favoriteTasks.length > 0 && (
+                    {importantTasks.length > 0 && (
                         <TasksCount>
-                            <span>{favoriteTasks.length}</span>
+                            <span>{importantTasks.length}</span>
                         </TasksCount>
                     )}
                 </ListItem>
