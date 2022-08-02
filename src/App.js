@@ -1,3 +1,4 @@
+import { useContext, useEffect } from 'react'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import styled from 'styled-components'
 import Sidebar from './components/Sidebar'
@@ -6,8 +7,15 @@ import Important from './pages/Important'
 import Planned from './pages/Planned'
 import Assigned from './pages/Assigned'
 import MyTasks from './pages/MyTasks'
+import { TasksContext } from './context/TasksContext'
 
 function App() {
+  const { getAllTasks } = useContext(TasksContext)
+
+  useEffect(() => {
+    getAllTasks()
+  }, [])
+
   return (
     <Router>
       <Container>

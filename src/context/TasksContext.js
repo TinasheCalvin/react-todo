@@ -1,60 +1,51 @@
 import { createContext, useReducer } from 'react'
+import axios from 'axios'
 import tasksReducer, { initialState } from './tasksReducer'
 import { todoCreationSuccess,addToFavorites,todoRemoveFromFavorites,todoCompletionSuccess } from '../components/notifications'
 
 export const TasksContext = createContext(initialState)
-const storage = window.localStorage
 
-function saveToLocalStorage(tasks) {
-    storage.setItem("tasks", JSON.stringify(tasks))
-}
+axios.defaults.baseURL = 'http://localhost:4000/tasks'
 
 export const TasksContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(tasksReducer, initialState)
 
-    const addTodoTask = (todo) => {
-        let tasks = state.tasks.concat(todo)
-        dispatch({
-            type: "ADD_TASK",
-            payload: tasks
-        })
-        saveToLocalStorage(tasks)
+    const getAllTasks = () => {
+        axios.get('/')
+            .then(res => {
+                dispatch({
+                    type: "GET_TASKS",
+                    payload: res.data
+                })
+            })
+            .catch(err => (
+                console.log(err)
+            ))
+    }
+
+    const addTodoTask = async (todo) => {
+        await axios.post('/', todo)
         todoCreationSuccess()
+        getAllTasks()
     }
 
-    const completeTodoTask = (id) => {
-        let tasks = state.tasks.map(task => (
-            task.id === id ? { ...task, isComplete: true } : task
-        ))
-        dispatch({
-            type: "COMPLETE_TASK",
-            payload: tasks
-        })
-        saveToLocalStorage(tasks)
+    const completeTodoTask = async (todo) => {
+        await axios.put(`/${todo._id}`, { ...todo, isComplete: true})
         todoCompletionSuccess()
+        getAllTasks()
     }
 
-    const addTaskToFavorites = (id) => {
-        let tasks = state.tasks.map((task) => (
-            task.id === id ? { ...task, isFavorite: true } : task
-        ))
-        dispatch({
-            type: "ADD_TO_FAVORITES",
-            payload: tasks
-        })
+    const addTaskToFavorites = async (todo) => {
+        await axios.put(`/${todo._id}`, { ...todo, isImportant: true})
         addToFavorites()
+        getAllTasks()
+        
     }
     
-    const removeFromFavorites = (id) => {
-        let tasks = state.tasks.map((task) => (
-            task.id === id ? { ...task, isFavorite: false } : task
-        ))
-        dispatch({
-            type: "REMOVE_FROM_FAVORITES",
-            payload: tasks
-        })
-        saveToLocalStorage(tasks)
+    const removeFromFavorites = async (todo) => {
+        await axios.put(`/${todo._id}`, { ...todo, isImportant: false})
         todoRemoveFromFavorites()
+        getAllTasks()
     }
 
     const changeBackgroundTheme = (id,background) => {
@@ -82,7 +73,7 @@ export const TasksContextProvider = ({children}) => {
     }
 
     // saving all the functions and state in one variable to use in the context provider
-    let value = { tasks: state.tasks, themes: state.themes, sidebarOpen: state.sidebarOpen, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar }
+    let value = { tasks: state.tasks, themes: state.themes, sidebarOpen: state.sidebarOpen, getAllTasks, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }

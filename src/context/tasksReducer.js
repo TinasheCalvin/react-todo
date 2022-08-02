@@ -1,6 +1,3 @@
-const storage = window.localStorage
-let tasks = JSON.parse(storage.getItem('tasks'))
-
 let themes = {
     'myDay': '/images/TV Tower.jpg',
     'important': '/images/Beach.jpg',
@@ -10,7 +7,7 @@ let themes = {
 }
 
 export const initialState = {
-    tasks: tasks ? tasks : [],
+    tasks: [],
     themes: themes,
     sidebarOpen: false
 }
@@ -19,7 +16,10 @@ const tasksReducer = (state, action) => {
     const {type, payload} = action
 
     switch(type) {
-        case "ADD_TASK":
+        case "GET_TASKS":
+            return { ...state, tasks: payload }
+        
+            case "ADD_TASK":
             return { ...state, tasks: payload }
         
         case "COMPLETE_TASK":
