@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
-import { formatISO } from 'date-fns'
 import { StarOutlineOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
@@ -13,8 +12,6 @@ function Important() {
     const [addTodo, setAddTodo] = useState(false)
     let { width } = useWindowSize()
     
-    let creationDate = formatISO(new Date(), { representation: 'date'})
-
     // defining state to show the themes wrapper
     const [themesVisible, setThemesVisible] = useState(false)
 
@@ -70,10 +67,12 @@ function Important() {
                 </InputWrapper>
                 {input.length > 0 && (
                   <MenuIconsWrapper>
-                    <MenuIcon>
-                      <HomeOutlined />
-                      <span>Tasks</span>
-                    </MenuIcon>
+                    {width >= 768 && (
+                      <MenuIcon>
+                        <HomeOutlined />
+                        <span>Tasks</span>
+                      </MenuIcon>
+                    )}
                     <MenuIcon>
                       <CalendarMonthOutlined fontSize='small'/>
                     </MenuIcon>

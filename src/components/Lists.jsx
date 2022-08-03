@@ -10,7 +10,7 @@ function Lists() {
     let { tasks, closeSidebar } = useContext(TasksContext)
     let today = formatISO(new Date(), { representation: 'date'})
 
-    let todayTasks = tasks.filter(task => task.creationDate === today && task.isComplete === false)
+    let todayTasks = tasks.filter(task => formatISO(new Date(task.createdAt), { representation: 'date'}) === today && task.isComplete === false)
     let importantTasks = tasks.filter(task => task.isImportant === true && task.isComplete === false)
     let incompleteTasks = tasks.filter(task => task.isComplete === false)
 

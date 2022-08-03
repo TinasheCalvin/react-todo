@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
-import { formatISO } from 'date-fns'
 import { PersonOutline,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
 import HeroContent from '../components/HeroContent'
 import Themes from '../components/Themes'
@@ -11,8 +10,6 @@ function Assigned() {
     const [input, setInput] = useState('')
     const [addTodo, setAddTodo] = useState(false)
     let { width } = useWindowSize()
-
-    let creationDate = formatISO(new Date(), { representation: 'date' })
 
     // defining the state for the todo list
     const { themes, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
@@ -63,10 +60,12 @@ function Assigned() {
                 </InputWrapper>
                 {input.length > 0 && (
                   <MenuIconsWrapper>
-                    <MenuIcon>
-                      <HomeOutlined />
-                      <span>Tasks</span>
-                    </MenuIcon>
+                    {width >= 768 && (
+                      <MenuIcon>
+                        <HomeOutlined />
+                        <span>Tasks</span>
+                      </MenuIcon>
+                    )}
                     <MenuIcon>
                       <CalendarMonthOutlined fontSize='small'/>
                     </MenuIcon>

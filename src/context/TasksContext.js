@@ -26,26 +26,22 @@ export const TasksContextProvider = ({children}) => {
     const addTodoTask = async (todo) => {
         await axios.post('/', todo)
         todoCreationSuccess()
-        getAllTasks()
     }
 
     const completeTodoTask = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isComplete: true})
         todoCompletionSuccess()
-        getAllTasks()
     }
 
     const addTaskToFavorites = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isImportant: true})
         addToFavorites()
-        getAllTasks()
         
     }
     
     const removeFromFavorites = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isImportant: false})
         todoRemoveFromFavorites()
-        getAllTasks()
     }
 
     const changeBackgroundTheme = (id,background) => {

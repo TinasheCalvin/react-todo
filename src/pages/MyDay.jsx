@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { format, formatISO } from 'date-fns'
 import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,HomeOutlined,CalendarMonthOutlined,AlarmOnOutlined,EventRepeatOutlined,Menu } from '@mui/icons-material'
@@ -10,14 +10,8 @@ import useWindowSize from '../hooks/useWindowSize'
 
 function MyDay() {
   let today = new Date()
-  let { tasks, getAllTasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
+  let { tasks, addTodoTask, themes, sidebarOpen, openSidebar } = useContext(TasksContext)
   let { width } = useWindowSize()
-
-  console.log(tasks)
-
-  useEffect(() => {
-    getAllTasks()
-  }, [])
   
   const [input, setInput] = useState('')
   const [addTodo, setAddTodo] = useState(false)
@@ -27,7 +21,7 @@ function MyDay() {
   // defining state to show the themes wrapper
   const [themesVisible, setThemesVisible] = useState(false)
 
-  let todos = tasks.filter(task => task.creationDate === creationDate && task.isComplete === false)
+  let todos = tasks.filter(task => formatISO(new Date(task.createdAt), { representation: 'date'}) === creationDate && task.isComplete === false)
 
   function handleAddTodo() {
     let todo = {
@@ -79,10 +73,12 @@ function MyDay() {
               </InputWrapper>
               {input.length > 0 && (
                 <MenuIconsWrapper>
-                  <MenuIcon>
-                    <HomeOutlined />
-                    <span>Tasks</span>
-                  </MenuIcon>
+                  {width >= 768 && (
+                    <MenuIcon>
+                      <HomeOutlined />
+                      <span>Tasks</span>
+                    </MenuIcon>
+                  )}
                   <MenuIcon>
                     <CalendarMonthOutlined fontSize='small'/>
                   </MenuIcon>
