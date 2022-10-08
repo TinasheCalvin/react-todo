@@ -19,7 +19,7 @@ const tasksReducer = (state, action) => {
         case "GET_TASKS":
             return { ...state, tasks: payload }
         
-            case "ADD_TASK":
+        case "ADD_TASK":
             return { ...state, tasks: payload }
         
         case "COMPLETE_TASK":

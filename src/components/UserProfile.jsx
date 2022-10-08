@@ -2,17 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 
 function UserProfile() {
-  return (
-    <Container>
-        <Avatar>
-            <span>TC</span>
-        </Avatar>
-        <UserInfo>
-            <h4>Tinashe Calvin</h4>
-            <p>iamtinashecalvin@gmail.com</p>
-        </UserInfo>
-    </Container>
-  )
+    
+    return (
+        <Container>
+            <Avatar>
+                <span>TC</span>
+            </Avatar>
+            <UserInfo>
+                <h4>Tinashe Calvin</h4>
+                <p>iamtinashecalvin@gmail.com</p>
+            </UserInfo>
+        </Container>
+    )
 }
 
 export default UserProfile
@@ -25,8 +26,8 @@ const Container = styled.div`
 `
 
 const Avatar = styled.div`
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     border-radius: 50%;
     background-color: #4d4dff;
     display: flex;

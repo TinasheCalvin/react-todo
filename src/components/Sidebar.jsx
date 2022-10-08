@@ -27,7 +27,7 @@ const Container = styled.div`
   width: 300px;
   height: 100%;
   padding: 20px;
-  background-color: #181818;
+  background-color: inherit;
   z-index: 1;
   position: fixed;
   top: 0;
