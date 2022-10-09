@@ -9,7 +9,8 @@ let themes = {
 export const initialState = {
     tasks: [],
     themes: themes,
-    sidebarOpen: false
+    sidebarOpen: false,
+    taskOpen: true
 }
 
 const tasksReducer = (state, action) => {
@@ -39,6 +40,13 @@ const tasksReducer = (state, action) => {
 
         case "CLOSE_SIDEBAR":
             return { ...state, sidebarOpen: payload }
+
+        case "VIEW_TASK":
+            return { ...state, taskOpen: payload }
+
+        case "CLOSE_TASK":
+            return { ...state, taskOpen: payload }
+    
 
         default:
             return state

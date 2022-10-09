@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import styled from 'styled-components'
 import Sidebar from './components/Sidebar'
+import TaskInfo from './components/TaskInfo'
 import MyDay from './pages/MyDay'
 import Important from './pages/Important'
 import Planned from './pages/Planned'
@@ -20,6 +21,7 @@ function App() {
     <Router>
       <Container>
         <Sidebar />
+        <TaskInfo />
         <Routes>
           <Route path="/">
             <Route index element={<MyDay />} />

@@ -68,8 +68,30 @@ export const TasksContextProvider = ({children}) => {
         })
     }
 
+    const openTaskView = () => {
+        let taskOpen = true
+        dispatch({
+            type: "VIEW_TASK",
+            payload: taskOpen
+        })
+    }
+
+    const closeTaskView = () => {
+        let taskOpen = false
+        dispatch({
+            type: "CLOSE_TASK",
+            payload: taskOpen
+        })
+    }
+
     // saving all the functions and state in one variable to use in the context provider
-    let value = { tasks: state.tasks, themes: state.themes, sidebarOpen: state.sidebarOpen, getAllTasks, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar }
+    let value = { 
+        tasks: state.tasks, 
+        themes: state.themes, 
+        sidebarOpen: state.sidebarOpen,
+        taskOpen: state.taskOpen, 
+        getAllTasks, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar, openTaskView, closeTaskView 
+    }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>
 }

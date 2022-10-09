@@ -5,6 +5,7 @@ import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,Hom
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
+import TaskInfo from '../components/TaskInfo'
 import { TasksContext } from '../context/TasksContext'
 import useWindowSize from '../hooks/useWindowSize'
 
@@ -20,6 +21,9 @@ function MyDay() {
 
   // defining state to show the themes wrapper
   const [themesVisible, setThemesVisible] = useState(false)
+
+  // defining the state for the task info wrapper
+  const [taskVisible, setTaskVisible] = useState(true)
 
   let todos = tasks.filter(task => formatISO(new Date(task.createdAt), { representation: 'date'}) === creationDate && task.isComplete === false)
 
@@ -41,7 +45,7 @@ function MyDay() {
         <img src={themes.myDay} alt="" />
       </Background>
       {(width <= 768 && !sidebarOpen) && <SidebarMenu fontSize='small' onClick={openSidebar}/>}
-      <Content>
+      <Content taskVisible={taskVisible}>
         <TopContent>
           <DateContainer>
             <h1>My Day</h1>
@@ -101,6 +105,7 @@ function MyDay() {
         </BottomContent>
       </Content>
       <Themes visible={themesVisible} name='myDay' />
+      {/* <TaskInfo visible={taskVisible} /> */}
     </Container>
   )
 }
@@ -123,6 +128,7 @@ const Container = styled.div`
       `
     }
   }}
+
 `
 
 const Background = styled.div`
