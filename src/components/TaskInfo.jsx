@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
-import styled, { keyframes, css } from 'styled-components'
+import styled from 'styled-components'
 import { CloseRounded } from '@mui/icons-material'
 import Todo from './Todo'
+import TaskSpecs from './TaskSpecs'
 import { TasksContext } from '../context/TasksContext'
 
-function TaskInfo({visible}) {
+function TaskInfo() {
     const { taskOpen, closeTaskView } = useContext(TasksContext)
 
     let todo = {
@@ -17,28 +18,19 @@ function TaskInfo({visible}) {
         <Container taskOpen={taskOpen}>
             <CloseIcon fontSize='small' onClick={closeTaskView} />
             <Todo todo={todo} />
+            <TaskSpecs todo={todo} />
         </Container>
     )
 }
 
 export default TaskInfo
 
-const fadeInTop = keyframes`
-    0% {
-        transform: translateY(-20px)
-    }
-
-    100% {
-        transform: translateY(0)
-    }
-`
-
 const Container = styled.div`
     z-index: 2;
     position: fixed;
     top: 0;
     right: 0;
-    width: 280px;
+    width: 295px;
     height: 100vh;
     padding: 10px;
     background-color: #181818;
