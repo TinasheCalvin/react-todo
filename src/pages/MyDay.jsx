@@ -5,7 +5,6 @@ import { TipsAndUpdatesOutlined,MoreHorizOutlined,AddOutlined,CircleOutlined,Hom
 import HeroContent from '../components/HeroContent'
 import Todo from '../components/Todo'
 import Themes from '../components/Themes'
-import TaskInfo from '../components/TaskInfo'
 import { TasksContext } from '../context/TasksContext'
 import useWindowSize from '../hooks/useWindowSize'
 

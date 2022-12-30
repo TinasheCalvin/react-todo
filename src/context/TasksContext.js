@@ -10,12 +10,13 @@ axios.defaults.baseURL = 'http://localhost:4000/tasks'
 export const TasksContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(tasksReducer, initialState)
 
-    const getAllTasks = () => {
-        axios.get('/')
+    const getAllTasks = async () => {
+        await axios.get('/')
             .then(res => {
+                console.log(res)
                 dispatch({
                     type: "GET_TASKS",
-                    payload: res.data
+                    payload: res.data.tasks
                 })
             })
             .catch(err => (

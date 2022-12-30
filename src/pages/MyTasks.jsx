@@ -17,7 +17,7 @@ function MyTasks() {
 
     // defining the state for the todo list
     const { themes, tasks, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
-    const todos = tasks.filter(todo => todo.isComplete === false)
+    const todos = tasks.filter(task => task.isComplete === false)
   
     function handleAddTodo() {
       let todo = {
