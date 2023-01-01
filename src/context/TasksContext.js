@@ -5,7 +5,7 @@ import { todoCreationSuccess,addToFavorites,todoRemoveFromFavorites,todoCompleti
 
 export const TasksContext = createContext(initialState)
 
-axios.defaults.baseURL = 'http://localhost:4000/tasks'
+axios.defaults.baseURL = 'https://nodejs-todo.onrender.com/tasks'
 
 export const TasksContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(tasksReducer, initialState)

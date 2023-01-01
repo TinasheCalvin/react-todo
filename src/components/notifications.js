@@ -19,27 +19,27 @@ const Toast = MySwal.mixin({
 export const todoCreationSuccess = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Todo created successfully'
+        title: 'Task created successfully'
     })
 }
 
 export const todoCompletionSuccess = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Todo completed'
+        title: 'Task completed'
     })
 }
 
 export const addToFavorites = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Todo added to favorites'
+        title: 'Task marked as important'
     })
 }
 
 export const todoRemoveFromFavorites = () => {
     Toast.fire({
         icon: 'success',
-        title: 'Todo removed from favorites'
+        title: 'Task marked as less important'
     })
 }

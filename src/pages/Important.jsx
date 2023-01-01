@@ -17,7 +17,7 @@ function Important() {
 
     // defining the state for the todo list
     const { themes, tasks, addTodoTask, sidebarOpen, openSidebar } = useContext(TasksContext)
-    const importantTasks = tasks.filter(task => task.isImportant)
+    const importantTasks = tasks.filter(task => task.isImportant && !task.isComplete)
   
     function handleAddTodo() {
       let todo = {
