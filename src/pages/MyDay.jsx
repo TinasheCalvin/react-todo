@@ -22,7 +22,7 @@ function MyDay() {
   const [themesVisible, setThemesVisible] = useState(false)
 
   // defining the state for the task info wrapper
-  const [taskVisible, setTaskVisible] = useState(true)
+  const [taskVisible, setTaskVisible] = useState(false)
 
   let todos = tasks.filter(task => formatISO(new Date(task.createdAt), { representation: 'date'}) === creationDate && task.isComplete === false)
 

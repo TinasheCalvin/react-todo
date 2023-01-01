@@ -10,7 +10,7 @@ export const initialState = {
     tasks: [],
     themes: themes,
     sidebarOpen: false,
-    taskOpen: true
+    taskOpen: false
 }
 
 const tasksReducer = (state, action) => {
