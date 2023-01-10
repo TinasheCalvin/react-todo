@@ -1,10 +1,15 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import { CircleOutlined, CheckCircle, StarBorderOutlined, Star } from '@mui/icons-material'
+import { CircleOutlined, CheckCircle, StarBorderOutlined, Star, VisibilityOutlined } from '@mui/icons-material'
 import { TasksContext } from '../context/TasksContext'
 
 function Todo({todo}) {
-  const { addTaskToFavorites, removeFromFavorites, completeTodoTask } = useContext(TasksContext)
+  const { addTaskToFavorites, removeFromFavorites, completeTodoTask, openTaskView, taskOpen, setTask } = useContext(TasksContext)
+
+  function handleView() {
+    openTaskView()
+    setTask(todo)
+  } 
 
   return (
     <Container>
@@ -15,10 +20,14 @@ function Todo({todo}) {
           }
           <span>{todo.description}</span>
       </TodoWrapper>
-      {todo.isImportant ?
-        <Star fontSize='small' onClick={() => removeFromFavorites(todo)} /> :
-        <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo)} />
-      }
+      <IconsWrapper>
+        {!taskOpen && <VisibilityOutlined fontSize='small' onClick={handleView} />}
+        {todo.isImportant ?
+          <Star fontSize='small' onClick={() => removeFromFavorites(todo)} /> :
+          <StarBorderOutlined fontSize='small' onClick={() => addTaskToFavorites(todo)} />
+        }
+      </IconsWrapper>
+      
     </Container>
   )
 }
@@ -54,4 +63,10 @@ const TodoWrapper = styled.div`
     font-size: 14px;
     font-weight: 500;
   }
+`
+
+const IconsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `

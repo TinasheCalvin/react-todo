@@ -27,22 +27,25 @@ export const TasksContextProvider = ({children}) => {
     const addTodoTask = async (todo) => {
         await axios.post('/', todo)
         todoCreationSuccess()
+        getAllTasks()
     }
 
     const completeTodoTask = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isComplete: true})
         todoCompletionSuccess()
+        getAllTasks()
     }
 
     const addTaskToFavorites = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isImportant: true})
         addToFavorites()
-        
+        getAllTasks()
     }
     
     const removeFromFavorites = async (todo) => {
         await axios.put(`/${todo._id}`, { ...todo, isImportant: false})
         todoRemoveFromFavorites()
+        getAllTasks()
     }
 
     const changeBackgroundTheme = (id,background) => {
@@ -85,13 +88,21 @@ export const TasksContextProvider = ({children}) => {
         })
     }
 
+    const setTask = (task) => {
+        dispatch({
+            type: "SET_TASK",
+            payload: task
+        })
+    }
+
     // saving all the functions and state in one variable to use in the context provider
     let value = { 
         tasks: state.tasks, 
         themes: state.themes, 
         sidebarOpen: state.sidebarOpen,
-        taskOpen: state.taskOpen, 
-        getAllTasks, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar, openTaskView, closeTaskView 
+        taskOpen: state.taskOpen,
+        task: state.task,
+        getAllTasks, addTodoTask,completeTodoTask,addTaskToFavorites,removeFromFavorites,changeBackgroundTheme,openSidebar,closeSidebar, openTaskView, closeTaskView, setTask
     }
 
     return <TasksContext.Provider value={value}>{children}</TasksContext.Provider>

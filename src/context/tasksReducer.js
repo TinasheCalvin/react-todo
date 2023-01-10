@@ -10,7 +10,8 @@ export const initialState = {
     tasks: [],
     themes: themes,
     sidebarOpen: false,
-    taskOpen: false
+    taskOpen: false,
+    task: {}
 }
 
 const tasksReducer = (state, action) => {
@@ -46,7 +47,8 @@ const tasksReducer = (state, action) => {
 
         case "CLOSE_TASK":
             return { ...state, taskOpen: payload }
-    
+        case "SET_TASK":
+            return {...state, task: payload }
 
         default:
             return state

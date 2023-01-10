@@ -6,19 +6,13 @@ import TaskSpecs from './TaskSpecs'
 import { TasksContext } from '../context/TasksContext'
 
 function TaskInfo() {
-    const { taskOpen, closeTaskView } = useContext(TasksContext)
-
-    let todo = {
-        description: 'Sample Task',
-        isComplete: false,
-        isImportant: true
-    }
+    const { task, taskOpen, closeTaskView } = useContext(TasksContext)
 
     return (
         <Container taskOpen={taskOpen}>
             <CloseIcon fontSize='small' onClick={closeTaskView} />
-            <Todo todo={todo} />
-            <TaskSpecs todo={todo} />
+            <Todo todo={task} />
+            <TaskSpecs todo={task} />
         </Container>
     )
 }
@@ -30,7 +24,7 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    width: 295px;
+    width: 300px;
     height: 100vh;
     padding: 10px;
     background-color: #181818;
