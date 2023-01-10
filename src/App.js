@@ -11,11 +11,11 @@ import MyTasks from './pages/MyTasks'
 import { TasksContext } from './context/TasksContext'
 
 function App() {
-  const { tasks, getAllTasks } = useContext(TasksContext)
+  const { getAllTasks } = useContext(TasksContext)
 
   useEffect(() => {
     getAllTasks()
-  }, [tasks])
+  }, [])
 
   return (
     <Router>
